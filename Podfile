@@ -7,5 +7,8 @@ target 'FirebaseChatApp' do
 
   # Pods for FirebaseChatApp
   pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   
 end
