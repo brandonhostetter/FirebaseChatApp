@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AE30C514329CE292F92121C6 /* Pods_FirebaseChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF99824C403E10E81538696D /* Pods_FirebaseChatApp.framework */; };
+		CA35D256214461B600F31F9F /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D255214461B600F31F9F /* NewMessageViewController.swift */; };
+		CA35D258214462B400F31F9F /* NewMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA35D257214462B400F31F9F /* NewMessageView.xib */; };
+		CA35D25A2144636100F31F9F /* LoginRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA35D2592144636100F31F9F /* LoginRegisterView.xib */; };
+		CA35D25D2144692100F31F9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D25C2144692100F31F9F /* User.swift */; };
+		CA35D25F2144760C00F31F9F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */; };
+		CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D260214476FF00F31F9F /* UserTableViewCell.swift */; };
 		CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E12144271200CFE33F /* AppDelegate.swift */; };
-		CAD150E42144271200CFE33F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E32144271200CFE33F /* ViewController.swift */; };
+		CAD150E42144271200CFE33F /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E32144271200CFE33F /* MessagesController.swift */; };
 		CAD150E72144271200CFE33F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E52144271200CFE33F /* Main.storyboard */; };
 		CAD150E92144271300CFE33F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E82144271300CFE33F /* Assets.xcassets */; };
 		CAD150EC2144271300CFE33F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150EA2144271300CFE33F /* LaunchScreen.storyboard */; };
@@ -22,9 +28,15 @@
 /* Begin PBXFileReference section */
 		AD5CA85F653D0C347FABD39C /* Pods-FirebaseChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChatApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChatApp/Pods-FirebaseChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AF99824C403E10E81538696D /* Pods_FirebaseChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA35D255214461B600F31F9F /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
+		CA35D257214462B400F31F9F /* NewMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageView.xib; sourceTree = "<group>"; };
+		CA35D2592144636100F31F9F /* LoginRegisterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginRegisterView.xib; sourceTree = "<group>"; };
+		CA35D25C2144692100F31F9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		CA35D260214476FF00F31F9F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		CAD150DE2144271200CFE33F /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD150E12144271200CFE33F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CAD150E32144271200CFE33F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CAD150E32144271200CFE33F /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		CAD150E62144271200CFE33F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAD150E82144271300CFE33F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAD150EB2144271300CFE33F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +69,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CA35D25B2144691700F31F9F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA35D25C2144692100F31F9F /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA35D26221447E4400F31F9F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CAD150F62144298100CFE33F /* Constants.swift */,
+				CAD150F821442AB500CFE33F /* Utility.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CAD150D52144271100CFE33F = {
 			isa = PBXGroup;
 			children = (
@@ -78,17 +107,19 @@
 		CAD150E02144271200CFE33F /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				CA35D26221447E4400F31F9F /* Helpers */,
+				CA35D25B2144691700F31F9F /* Model */,
 				CAD150FA2144340900CFE33F /* GoogleService-Info.plist */,
 				CAD150E12144271200CFE33F /* AppDelegate.swift */,
 				CAD150EA2144271300CFE33F /* LaunchScreen.storyboard */,
 				CAD150E82144271300CFE33F /* Assets.xcassets */,
 				CAD150ED2144271300CFE33F /* Info.plist */,
 				CAD150F32144276000CFE33F /* Xibs */,
-				CAD150E32144271200CFE33F /* ViewController.swift */,
+				CAD150E32144271200CFE33F /* MessagesController.swift */,
 				CAD150E52144271200CFE33F /* Main.storyboard */,
 				CAD150F42144283F00CFE33F /* LoginViewController.swift */,
-				CAD150F62144298100CFE33F /* Constants.swift */,
-				CAD150F821442AB500CFE33F /* Utility.swift */,
+				CA35D255214461B600F31F9F /* NewMessageViewController.swift */,
+				CA35D260214476FF00F31F9F /* UserTableViewCell.swift */,
 			);
 			path = FirebaseChatApp;
 			sourceTree = "<group>";
@@ -96,6 +127,9 @@
 		CAD150F32144276000CFE33F /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				CA35D257214462B400F31F9F /* NewMessageView.xib */,
+				CA35D2592144636100F31F9F /* LoginRegisterView.xib */,
+				CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -171,6 +205,9 @@
 				CAD150EC2144271300CFE33F /* LaunchScreen.storyboard in Resources */,
 				CAD150FB2144340900CFE33F /* GoogleService-Info.plist in Resources */,
 				CAD150E92144271300CFE33F /* Assets.xcassets in Resources */,
+				CA35D25F2144760C00F31F9F /* UserTableViewCell.xib in Resources */,
+				CA35D25A2144636100F31F9F /* LoginRegisterView.xib in Resources */,
+				CA35D258214462B400F31F9F /* NewMessageView.xib in Resources */,
 				CAD150E72144271200CFE33F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAD150F921442AB500CFE33F /* Utility.swift in Sources */,
+				CA35D256214461B600F31F9F /* NewMessageViewController.swift in Sources */,
 				CAD150F52144283F00CFE33F /* LoginViewController.swift in Sources */,
-				CAD150E42144271200CFE33F /* ViewController.swift in Sources */,
+				CAD150E42144271200CFE33F /* MessagesController.swift in Sources */,
+				CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */,
 				CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */,
 				CAD150F72144298100CFE33F /* Constants.swift in Sources */,
+				CA35D25D2144692100F31F9F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

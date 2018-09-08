@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 
 class LoginViewController: UIViewController {
     var db: Firestore!
@@ -37,6 +38,11 @@ class LoginViewController: UIViewController {
         
         inputContainerView.layer.cornerRadius = 5
         inputContainerView.layer.masksToBounds = true
+        
+        
+        let profileImageViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(profileImageViewTapGestureRecognizer)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -77,19 +83,43 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            // Add a new document with a generated ID
-            let user: [String: String] = [
-                "name": name,
-                "email": email
-            ]
-            self.db.collection("users").document("\(uid)").setData(user) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("User successfully added to database!")
+            if let image = self.profileImageView.image, image != #imageLiteral(resourceName: "gameofthrones_splash"), let imageData = UIImagePNGRepresentation(image) {
+                let storage = Storage.storage()
+                let storageRef = storage.reference()
+                let profileRef = storageRef.child("\(kProfileImagesKey)/\(uid).png")
+
+                let uploadTask = profileRef.putData(imageData, metadata: nil) { (metadata, error) in
+                    if error != nil || metadata == nil {
+                        print(error ?? "Error")
+                        return
+                    }
                     
-                    self.dismiss(animated: true, completion: nil)
+                    profileRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            return
+                        }
+                        
+                        let user: [String: Any] = [
+                            "name": name,
+                            "email": email,
+                            "profileImageUrl": downloadURL.absoluteString
+                        ]
+                        self.addUserToDatabase(uid, user)
+                    }
                 }
+            }
+        }
+    }
+    
+    private func addUserToDatabase(_ uid: String, _ user: [String: Any]) {
+        self.db.collection(kUsersKey).document("\(uid)").setData(user) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("User successfully added to database!")
+                
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -115,5 +145,33 @@ class LoginViewController: UIViewController {
             nameTextFieldHeightConstraint.constant = 50
         }
     }
+    
+    @objc private func profileImageViewTapped() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
 }
 
+extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImage: UIImage?
+        
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            selectedImage = editedImage
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImage = originalImage
+        }
+        
+        if let selectedImage = selectedImage {
+            profileImageView.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
