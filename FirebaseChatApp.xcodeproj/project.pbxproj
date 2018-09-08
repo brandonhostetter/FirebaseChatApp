@@ -54,6 +54,7 @@
 		CAD150E02144271200CFE33F /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				CAD150F32144276000CFE33F /* Xibs */,
 				CAD150E12144271200CFE33F /* AppDelegate.swift */,
 				CAD150E32144271200CFE33F /* ViewController.swift */,
 				CAD150E52144271200CFE33F /* Main.storyboard */,
@@ -62,6 +63,13 @@
 				CAD150ED2144271300CFE33F /* Info.plist */,
 			);
 			path = FirebaseChatApp;
+			sourceTree = "<group>";
+		};
+		CAD150F32144276000CFE33F /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
