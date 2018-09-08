@@ -12,6 +12,9 @@
 		CAD150E72144271200CFE33F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E52144271200CFE33F /* Main.storyboard */; };
 		CAD150E92144271300CFE33F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E82144271300CFE33F /* Assets.xcassets */; };
 		CAD150EC2144271300CFE33F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150EA2144271300CFE33F /* LaunchScreen.storyboard */; };
+		CAD150F52144283F00CFE33F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150F42144283F00CFE33F /* LoginViewController.swift */; };
+		CAD150F72144298100CFE33F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150F62144298100CFE33F /* Constants.swift */; };
+		CAD150F921442AB500CFE33F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150F821442AB500CFE33F /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		CAD150E82144271300CFE33F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAD150EB2144271300CFE33F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAD150ED2144271300CFE33F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAD150F42144283F00CFE33F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CAD150F62144298100CFE33F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CAD150F821442AB500CFE33F /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,9 @@
 				CAD150E82144271300CFE33F /* Assets.xcassets */,
 				CAD150EA2144271300CFE33F /* LaunchScreen.storyboard */,
 				CAD150ED2144271300CFE33F /* Info.plist */,
+				CAD150F42144283F00CFE33F /* LoginViewController.swift */,
+				CAD150F62144298100CFE33F /* Constants.swift */,
+				CAD150F821442AB500CFE33F /* Utility.swift */,
 			);
 			path = FirebaseChatApp;
 			sourceTree = "<group>";
@@ -143,8 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD150F921442AB500CFE33F /* Utility.swift in Sources */,
+				CAD150F52144283F00CFE33F /* LoginViewController.swift in Sources */,
 				CAD150E42144271200CFE33F /* ViewController.swift in Sources */,
 				CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */,
+				CAD150F72144298100CFE33F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
