@@ -9,6 +9,8 @@
 import UIKit
 
 let kUsersKey = "users"
+let kUserNameKey = "name"
+let kUserEmailKey = "email"
 let kProfileImagesKey = "profileImages"
 
 let kLoginRegisterView = "LoginRegisterView"

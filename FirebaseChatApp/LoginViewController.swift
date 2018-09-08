@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class LoginViewController: UIViewController {
     var db: Firestore!
+    var messagesController: MessagesController?
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -64,6 +65,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -119,6 +121,7 @@ class LoginViewController: UIViewController {
             } else {
                 print("User successfully added to database!")
                 
+                self.messagesController?.navigationItem.title = user["name"] as? String ?? ""
                 self.dismiss(animated: true, completion: nil)
             }
         }

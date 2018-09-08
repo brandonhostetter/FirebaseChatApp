@@ -23,28 +23,32 @@ class MessagesController: UIViewController {
         checkIfUserLoggedIn()
     }
     
+    func fetchUserAndSetupNavBarTitle() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            assertionFailure()
+            return
+        }
+        
+        let userRef = db.collection(kUsersKey).document(uid)
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data: [String: Any] = document.data() ?? [:]
+                if let name = data[kUserNameKey] as? String {
+                    self.navigationItem.title = name
+                }
+                print("Document data: \(data)")
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     private func checkIfUserLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
             // Go to login page
             perform(#selector(logout), with: nil, afterDelay: 0)
         } else {
-            guard let uid = Auth.auth().currentUser?.uid else {
-                assertionFailure()
-                return
-            }
-            
-            let userRef = db.collection(kUsersKey).document(uid)
-            userRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let data: [String: Any] = document.data() ?? [:]
-                    if let name = data["name"] as? String {
-                        self.navigationItem.title = name
-                    }
-                    print("Document data: \(data)")
-                } else {
-                    print("Document does not exist")
-                }
-            }
+            fetchUserAndSetupNavBarTitle()
         }
     }
     
@@ -62,6 +66,7 @@ class MessagesController: UIViewController {
         }
         
         let loginRegisterViewController = LoginViewController(nibName: kLoginRegisterView, bundle: nil)
+        loginRegisterViewController.messagesController = self
         present(loginRegisterViewController, animated: true, completion: nil)
     }
 }
