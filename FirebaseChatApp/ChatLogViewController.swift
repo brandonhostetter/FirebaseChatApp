@@ -36,6 +36,10 @@ class ChatLogViewController: UIViewController {
         observeMessages()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     private func observeMessages() {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -43,6 +47,7 @@ class ChatLogViewController: UIViewController {
         
         db.collection(kUserMessagesKey).document(uid).collection(kMessagesKey).addSnapshotListener { (querySnapshot, err) in
             guard let documents = querySnapshot?.documents else { return }
+            self.messages.removeAll()
             for doc in documents {
                 self.db.collection(kMessagesKey).document("\(doc.documentID)").getDocument(completion: { (documentSnapshot, err) in
                     guard let doc = documentSnapshot, let data = doc.data() else { return }
@@ -50,6 +55,7 @@ class ChatLogViewController: UIViewController {
                     
                     if msg.chatPartnerId() == self.user?.id {
                         self.messages.append(msg)
+                        self.messages = self.messages.sorted(by: { $0.timestamp?.intValue ?? 0 < $1.timestamp?.intValue ?? 0 })
                         self.collectionView.reloadData()
                     }
                 })
@@ -74,6 +80,8 @@ class ChatLogViewController: UIViewController {
             } else {
                 print("Message successfully added to database!")
                 
+                self.inputTextField.text = nil
+                
                 // Save to sender's messages
                 self.db.collection(kUserMessagesKey).document(fromId).collection(kMessagesKey).document(newMsgRef.documentID).setData(["1": 1], completion: { (err) in
                     if let err = err {
@@ -95,6 +103,12 @@ class ChatLogViewController: UIViewController {
         }
     }
     
+    private func estimateFrameForText(text: String) -> CGRect {
+        let size = CGSize(width: 200, height: 10000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [kCTFontAttributeName as NSAttributedStringKey: UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+    
     @IBAction func sendButtonTapped(_ sender: Any) {
         sendMessage()
     }
@@ -111,7 +125,10 @@ extension ChatLogViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kChatMessageCollectionViewCellReuseId, for: indexPath) as! ChatMessageCollectionViewCell
-        cell.messageLabel.text = messages[indexPath.row].text
+        
+        let text = messages[indexPath.row].text
+        cell.bubbleViewWidthConstraint.constant = estimateFrameForText(text: text!).width + 18
+        cell.configure(message: text)
         return cell
     }
 }
@@ -125,6 +142,12 @@ extension ChatLogViewController: UITextFieldDelegate {
 
 extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 80)
+        var height: CGFloat = 80.0
+        
+        if let text = messages[indexPath.row].text {
+            height = estimateFrameForText(text: text).height + 16
+        }
+        
+        return CGSize(width: view.frame.width, height: height)
     }
 }

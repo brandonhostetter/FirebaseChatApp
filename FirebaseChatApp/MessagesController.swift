@@ -84,8 +84,8 @@ class MessagesController: UIViewController {
                     
                     let msg = Message(data)
                     
-                    if let toId = msg.toId {
-                        self.messagesDict[toId] = msg
+                    if let chatPartnerId = msg.chatPartnerId() {
+                        self.messagesDict[chatPartnerId] = msg
                     }
                     
                     self.messages = Array(self.messagesDict.values)

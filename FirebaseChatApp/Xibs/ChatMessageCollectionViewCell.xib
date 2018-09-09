@@ -19,22 +19,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNO-wA-fjn">
-                        <rect key="frame" x="16" y="16" width="268" height="68"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEj-YH-cAC">
+                        <rect key="frame" x="76" y="0.0" width="216" height="100"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNO-wA-fjn">
+                                <rect key="frame" x="8" y="0.0" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="r53-eS-G40"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="DNO-wA-fjn" secondAttribute="bottom" id="8cP-hW-cQ3"/>
+                            <constraint firstAttribute="trailing" secondItem="DNO-wA-fjn" secondAttribute="trailing" constant="8" id="D2i-hB-zVJ"/>
+                            <constraint firstItem="DNO-wA-fjn" firstAttribute="leading" secondItem="jEj-YH-cAC" secondAttribute="leading" constant="8" id="HLL-dW-NDB"/>
+                            <constraint firstAttribute="width" constant="216" id="cb9-OY-M5z"/>
+                            <constraint firstItem="DNO-wA-fjn" firstAttribute="top" secondItem="jEj-YH-cAC" secondAttribute="top" id="dpd-rc-F8u"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="DNO-wA-fjn" secondAttribute="bottom" constant="16" id="0KJ-Ps-73s"/>
-                <constraint firstAttribute="trailing" secondItem="DNO-wA-fjn" secondAttribute="trailing" constant="16" id="FbQ-dg-vmd"/>
-                <constraint firstItem="DNO-wA-fjn" firstAttribute="top" secondItem="h08-hk-asx" secondAttribute="top" constant="16" id="Gzd-kM-IdQ"/>
-                <constraint firstItem="DNO-wA-fjn" firstAttribute="leading" secondItem="h08-hk-asx" secondAttribute="leading" constant="16" id="owb-jR-sHR"/>
+                <constraint firstAttribute="trailing" secondItem="jEj-YH-cAC" secondAttribute="trailing" constant="8" id="Ywc-Ky-uoT"/>
+                <constraint firstAttribute="bottom" secondItem="jEj-YH-cAC" secondAttribute="bottom" id="mCD-Qh-Qtn"/>
+                <constraint firstItem="jEj-YH-cAC" firstAttribute="top" secondItem="h08-hk-asx" secondAttribute="top" id="p46-bv-tuf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="XSA-TI-gjj"/>
             <connections>
+                <outlet property="bubbleView" destination="jEj-YH-cAC" id="hAE-9g-umb"/>
+                <outlet property="bubbleViewWidthConstraint" destination="cb9-OY-M5z" id="8Z8-N8-SjB"/>
                 <outlet property="messageLabel" destination="DNO-wA-fjn" id="bOf-tg-1Cs"/>
             </connections>
             <point key="canvasLocation" x="-274" y="9"/>
