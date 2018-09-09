@@ -21,6 +21,15 @@ class MessagesController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new_message_icon"), style: .plain, target: self, action: #selector(createNewMessage))
         
         checkIfUserLoggedIn()
+        
+        // TEMP
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+        view.isUserInteractionEnabled = true
+    }
+    
+    @objc func showChatController() {
+        let chatLogViewController = ChatLogViewController(nibName: kChatLogView, bundle: nil)
+        navigationController?.pushViewController(chatLogViewController, animated: true)
     }
     
     func fetchUserAndSetupNavBarTitle() {

@@ -14,6 +14,8 @@
 		CA35D25D2144692100F31F9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D25C2144692100F31F9F /* User.swift */; };
 		CA35D25F2144760C00F31F9F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */; };
 		CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D260214476FF00F31F9F /* UserTableViewCell.swift */; };
+		CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E78821456804005ACF27 /* ChatLogViewController.swift */; };
+		CA46E78B21456839005ACF27 /* ChatLogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA46E78A21456839005ACF27 /* ChatLogView.xib */; };
 		CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E12144271200CFE33F /* AppDelegate.swift */; };
 		CAD150E42144271200CFE33F /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E32144271200CFE33F /* MessagesController.swift */; };
 		CAD150E72144271200CFE33F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E52144271200CFE33F /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 		CA35D25C2144692100F31F9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		CA35D260214476FF00F31F9F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		CA46E78821456804005ACF27 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		CA46E78A21456839005ACF27 /* ChatLogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLogView.xib; sourceTree = "<group>"; };
 		CAD150DE2144271200CFE33F /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD150E12144271200CFE33F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAD150E32144271200CFE33F /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -107,19 +111,20 @@
 		CAD150E02144271200CFE33F /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
-				CA35D26221447E4400F31F9F /* Helpers */,
-				CA35D25B2144691700F31F9F /* Model */,
 				CAD150FA2144340900CFE33F /* GoogleService-Info.plist */,
 				CAD150E12144271200CFE33F /* AppDelegate.swift */,
 				CAD150EA2144271300CFE33F /* LaunchScreen.storyboard */,
 				CAD150E82144271300CFE33F /* Assets.xcassets */,
 				CAD150ED2144271300CFE33F /* Info.plist */,
+				CA35D26221447E4400F31F9F /* Helpers */,
 				CAD150F32144276000CFE33F /* Xibs */,
+				CA35D25B2144691700F31F9F /* Model */,
 				CAD150E32144271200CFE33F /* MessagesController.swift */,
 				CAD150E52144271200CFE33F /* Main.storyboard */,
 				CAD150F42144283F00CFE33F /* LoginViewController.swift */,
 				CA35D255214461B600F31F9F /* NewMessageViewController.swift */,
 				CA35D260214476FF00F31F9F /* UserTableViewCell.swift */,
+				CA46E78821456804005ACF27 /* ChatLogViewController.swift */,
 			);
 			path = FirebaseChatApp;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 				CA35D257214462B400F31F9F /* NewMessageView.xib */,
 				CA35D2592144636100F31F9F /* LoginRegisterView.xib */,
 				CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */,
+				CA46E78A21456839005ACF27 /* ChatLogView.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				CAD150E92144271300CFE33F /* Assets.xcassets in Resources */,
 				CA35D25F2144760C00F31F9F /* UserTableViewCell.xib in Resources */,
 				CA35D25A2144636100F31F9F /* LoginRegisterView.xib in Resources */,
+				CA46E78B21456839005ACF27 /* ChatLogView.xib in Resources */,
 				CA35D258214462B400F31F9F /* NewMessageView.xib in Resources */,
 				CAD150E72144271200CFE33F /* Main.storyboard in Resources */,
 			);
@@ -282,6 +289,7 @@
 				CAD150E42144271200CFE33F /* MessagesController.swift in Sources */,
 				CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */,
 				CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */,
+				CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */,
 				CAD150F72144298100CFE33F /* Constants.swift in Sources */,
 				CA35D25D2144692100F31F9F /* User.swift in Sources */,
 			);

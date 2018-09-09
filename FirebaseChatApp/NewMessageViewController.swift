@@ -12,6 +12,7 @@ import Firebase
 class NewMessageViewController: UIViewController {
     var db: Firestore!
     var users = [User]()
+    var messagesController: MessagesController?
 
     @IBOutlet weak var usersTableView: UITableView!
     
@@ -50,7 +51,11 @@ class NewMessageViewController: UIViewController {
 }
 
 extension NewMessageViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            self.messagesController?.showChatController()
+        }
+    }
 }
 
 extension NewMessageViewController: UITableViewDataSource {

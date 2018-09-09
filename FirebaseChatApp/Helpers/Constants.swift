@@ -9,12 +9,16 @@
 import UIKit
 
 let kUsersKey = "users"
+let kMessagesKey = "messages"
+
 let kUserNameKey = "name"
 let kUserEmailKey = "email"
+let kprofileImageUrlKey = "profileImageUrl"
 let kProfileImagesKey = "profileImages"
 
 let kLoginRegisterView = "LoginRegisterView"
 let kNewMessageView = "NewMessageView"
+let kChatLogView = "ChatLogView"
 
 let kUserTableViewCell = "UserTableViewCell"
 let kUserTableViewCellReuseId = "UserTableViewCellReuseId"

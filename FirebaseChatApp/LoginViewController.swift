@@ -32,14 +32,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
+        db = Util.shared.db
         
         inputContainerView.layer.cornerRadius = 5
         inputContainerView.layer.masksToBounds = true
-        
         
         let profileImageViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
         profileImageView.isUserInteractionEnabled = true
@@ -85,12 +81,12 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            if let image = self.profileImageView.image, image != #imageLiteral(resourceName: "gameofthrones_splash"), let imageData = UIImagePNGRepresentation(image) {
+            if let image = self.profileImageView.image, image != #imageLiteral(resourceName: "gameofthrones_splash"), let imageData = UIImageJPEGRepresentation(image, 0.1) {
                 let storage = Storage.storage()
                 let storageRef = storage.reference()
                 let profileRef = storageRef.child("\(kProfileImagesKey)/\(uid).png")
 
-                let uploadTask = profileRef.putData(imageData, metadata: nil) { (metadata, error) in
+                _ = profileRef.putData(imageData, metadata: nil) { (metadata, error) in
                     if error != nil || metadata == nil {
                         print(error ?? "Error")
                         return
@@ -103,9 +99,9 @@ class LoginViewController: UIViewController {
                         }
                         
                         let user: [String: Any] = [
-                            "name": name,
-                            "email": email,
-                            "profileImageUrl": downloadURL.absoluteString
+                            kUserNameKey: name,
+                            kUserEmailKey: email,
+                            kprofileImageUrlKey: downloadURL.absoluteString
                         ]
                         self.addUserToDatabase(uid, user)
                     }
