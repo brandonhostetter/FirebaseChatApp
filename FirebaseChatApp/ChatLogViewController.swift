@@ -38,11 +38,31 @@ class ChatLogViewController: UIViewController {
         let timestamp = NSDate().timeIntervalSince1970
         let msg: [String: Any] = ["text": msgText, "toId": toId, "fromId": fromId, "timestamp": timestamp]
         
-        self.db.collection(kMessagesKey).addDocument(data: msg) { err in
+        // Save message to "messages" collection
+        let newMsgRef = db.collection(kMessagesKey).document()
+        newMsgRef.setData(msg) { (err) in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
                 print("Message successfully added to database!")
+                
+                // Save to sender's messages
+                self.db.collection(kUserMessagesKey).document("\(fromId)").collection(kMessagesKey).document(newMsgRef.documentID).setData(["1": 1], completion: { (err) in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Message successfully fanned out!")
+                    }
+                })
+                
+                // Save to recipient's messages
+                self.db.collection(kUserMessagesKey).document("\(toId)").collection(kMessagesKey).document(newMsgRef.documentID).setData(["1": 1], completion: { (err) in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Message successfully fanned out!")
+                    }
+                })
             }
         }
     }

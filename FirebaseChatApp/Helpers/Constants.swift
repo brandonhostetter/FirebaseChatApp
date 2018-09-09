@@ -10,6 +10,7 @@ import UIKit
 
 let kUsersKey = "users"
 let kMessagesKey = "messages"
+let kUserMessagesKey = "userMessages"
 
 let kUserNameKey = "name"
 let kUserEmailKey = "email"

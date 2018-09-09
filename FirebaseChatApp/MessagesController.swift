@@ -27,7 +27,6 @@ class MessagesController: UIViewController {
         usersTableView.register(UINib(nibName: kUserTableViewCell, bundle: nil), forCellReuseIdentifier: kUserTableViewCellReuseId)
 
         checkIfUserLoggedIn()
-        observeMessages()
     }
     
     func showChatController(for user: User) {
@@ -37,6 +36,11 @@ class MessagesController: UIViewController {
     }
     
     func fetchUserAndSetupNavBarTitle() {
+        self.messages.removeAll()
+        self.messagesDict.removeAll()
+        self.usersTableView.reloadData()
+        observeMessages()
+
         guard let uid = Auth.auth().currentUser?.uid else {
             assertionFailure()
             return
@@ -66,26 +70,31 @@ class MessagesController: UIViewController {
     }
     
     private func observeMessages() {
-        db.collection(kMessagesKey).addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            
-            self.messages.removeAll()
-            for doc in document.documents {
-                let msg = Message(doc.data())
-                
-                if let toId = msg.toId {
-                    self.messagesDict[toId] = msg
-                }
-            }
-            
-            self.messages = Array(self.messagesDict.values)
-            self.messages = self.messages.sorted(by: { $0.timestamp?.intValue ?? 0 > $1.timestamp?.intValue ?? 0 })
-            
-            self.usersTableView.reloadData()
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
         }
+        
+        db.collection(kUserMessagesKey).document("\(uid)").collection(kMessagesKey).addSnapshotListener({ (querySnapshot, err) in
+            guard let documents = querySnapshot?.documents else { return }
+            
+            for doc in documents {
+                self.db.collection(kMessagesKey).document("\(doc.documentID)").getDocument(completion: { (documentSnapshot, err) in
+                    guard let doc = documentSnapshot, let data = doc.data() else { return }
+                    self.messages.removeAll()
+                    
+                    let msg = Message(data)
+                    
+                    if let toId = msg.toId {
+                        self.messagesDict[toId] = msg
+                    }
+                    
+                    self.messages = Array(self.messagesDict.values)
+                    self.messages = self.messages.sorted(by: { $0.timestamp?.intValue ?? 0 > $1.timestamp?.intValue ?? 0 })
+                    
+                    self.usersTableView.reloadData()
+                })
+            }
+        })
     }
     
     @objc private func createNewMessage() {

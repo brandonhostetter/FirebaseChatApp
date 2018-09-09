@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class UserTableViewCell: UITableViewCell {
     var db: Firestore!
@@ -29,15 +30,22 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func configureAsFriend(_ message: Message) {
-        guard let toId = message.toId else {
+        guard let toId = message.toId, let fromId = message.fromId else {
             return
         }
         
+        let chatPartnerId: String
+        if fromId == Auth.auth().currentUser?.uid {
+            chatPartnerId = toId
+        } else {
+            chatPartnerId = fromId
+        }
+        
         db = Util.shared.db
-        let userRef = db.collection(kUsersKey).document(toId)
+        let userRef = db.collection(kUsersKey).document(chatPartnerId)
         userRef.getDocument { (document, error) in
             if let document = document, document.exists, let data: [String: Any] = document.data() {
-                let user = User(data, id: toId)
+                let user = User(data, id: chatPartnerId)
                 self.nameLabel.text = user.name
                 self.emailLabel.text = message.text
                 self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width / 2
@@ -46,7 +54,7 @@ class UserTableViewCell: UITableViewCell {
                 if let seconds = message.timestamp?.doubleValue {
                     let timestampDate = Date(timeIntervalSince1970: seconds)
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "hh:mm:ss a"
+                    dateFormatter.dateFormat = "h:mm a"
                     self.timeLabel.text = dateFormatter.string(from: timestampDate)
                 }
                 
