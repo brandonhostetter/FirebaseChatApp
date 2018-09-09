@@ -30,15 +30,8 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func configureAsFriend(_ message: Message) {
-        guard let toId = message.toId, let fromId = message.fromId else {
+        guard let chatPartnerId = message.chatPartnerId() else {
             return
-        }
-        
-        let chatPartnerId: String
-        if fromId == Auth.auth().currentUser?.uid {
-            chatPartnerId = toId
-        } else {
-            chatPartnerId = fromId
         }
         
         db = Util.shared.db

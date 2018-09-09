@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class Message {
     var fromId: String?
@@ -27,5 +28,13 @@ class Message {
         self.text = text
         self.timestamp = timestamp
         self.toId = toId
+    }
+    
+    func chatPartnerId() -> String? {
+        if fromId == Auth.auth().currentUser?.uid {
+            return toId
+        } else {
+            return fromId
+        }
     }
 }

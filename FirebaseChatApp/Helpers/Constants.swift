@@ -23,3 +23,6 @@ let kChatLogView = "ChatLogView"
 
 let kUserTableViewCell = "UserTableViewCell"
 let kUserTableViewCellReuseId = "UserTableViewCellReuseId"
+
+let kChatMessageCollectionViewCell = "ChatMessageCollectionViewCell"
+let kChatMessageCollectionViewCellReuseId = "ChatMessageCollectionViewCellReuseId"

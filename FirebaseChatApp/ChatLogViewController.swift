@@ -17,6 +17,8 @@ class ChatLogViewController: UIViewController {
             navigationItem.title = user?.name
         }
     }
+    var messages = [Message]()
+    var messagesDict = [String: Message]()
 
     @IBOutlet weak var inputContainerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,8 +27,34 @@ class ChatLogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         db = Util.shared.db
+        collectionView.register(UINib(nibName: kChatMessageCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: kChatMessageCollectionViewCellReuseId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        observeMessages()
+    }
+    
+    private func observeMessages() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        db.collection(kUserMessagesKey).document(uid).collection(kMessagesKey).addSnapshotListener { (querySnapshot, err) in
+            guard let documents = querySnapshot?.documents else { return }
+            for doc in documents {
+                self.db.collection(kMessagesKey).document("\(doc.documentID)").getDocument(completion: { (documentSnapshot, err) in
+                    guard let doc = documentSnapshot, let data = doc.data() else { return }
+                    let msg = Message(data)
+                    
+                    if msg.chatPartnerId() == self.user?.id {
+                        self.messages.append(msg)
+                        self.collectionView.reloadData()
+                    }
+                })
+            }
+        }
     }
     
     private func sendMessage() {
@@ -47,7 +75,7 @@ class ChatLogViewController: UIViewController {
                 print("Message successfully added to database!")
                 
                 // Save to sender's messages
-                self.db.collection(kUserMessagesKey).document("\(fromId)").collection(kMessagesKey).document(newMsgRef.documentID).setData(["1": 1], completion: { (err) in
+                self.db.collection(kUserMessagesKey).document(fromId).collection(kMessagesKey).document(newMsgRef.documentID).setData(["1": 1], completion: { (err) in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
@@ -78,11 +106,12 @@ extension ChatLogViewController: UICollectionViewDelegate {
 
 extension ChatLogViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return messages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "asdf", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kChatMessageCollectionViewCellReuseId, for: indexPath) as! ChatMessageCollectionViewCell
+        cell.messageLabel.text = messages[indexPath.row].text
         return cell
     }
 }
@@ -91,5 +120,11 @@ extension ChatLogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sendMessage()
         return true
+    }
+}
+
+extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 80)
     }
 }

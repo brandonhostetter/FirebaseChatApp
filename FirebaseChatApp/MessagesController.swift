@@ -118,7 +118,16 @@ class MessagesController: UIViewController {
 }
 
 extension MessagesController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        guard let chatPartnerId = message.chatPartnerId() else { return }
+        
+        db.collection(kUsersKey).document(chatPartnerId).getDocument { (documentSnapshot, err) in
+            guard let data = documentSnapshot?.data() else { return }
+            let user = User(data, id: chatPartnerId)
+            self.showChatController(for: user)
+        }
+    }
 }
 
 extension MessagesController: UITableViewDataSource {

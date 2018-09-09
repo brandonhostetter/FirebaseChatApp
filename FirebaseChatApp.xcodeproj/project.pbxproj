@@ -17,6 +17,8 @@
 		CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E78821456804005ACF27 /* ChatLogViewController.swift */; };
 		CA46E78B21456839005ACF27 /* ChatLogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA46E78A21456839005ACF27 /* ChatLogView.xib */; };
 		CA46E78D21457966005ACF27 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E78C21457966005ACF27 /* Message.swift */; };
+		CA46E78F2145B047005ACF27 /* ChatMessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA46E78E2145B047005ACF27 /* ChatMessageCollectionViewCell.xib */; };
+		CA46E7912145B066005ACF27 /* ChatMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E7902145B066005ACF27 /* ChatMessageCollectionViewCell.swift */; };
 		CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E12144271200CFE33F /* AppDelegate.swift */; };
 		CAD150E42144271200CFE33F /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E32144271200CFE33F /* MessagesController.swift */; };
 		CAD150E72144271200CFE33F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E52144271200CFE33F /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		CA46E78821456804005ACF27 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		CA46E78A21456839005ACF27 /* ChatLogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLogView.xib; sourceTree = "<group>"; };
 		CA46E78C21457966005ACF27 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		CA46E78E2145B047005ACF27 /* ChatMessageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		CA46E7902145B066005ACF27 /* ChatMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CAD150DE2144271200CFE33F /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD150E12144271200CFE33F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAD150E32144271200CFE33F /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				CA35D255214461B600F31F9F /* NewMessageViewController.swift */,
 				CA35D260214476FF00F31F9F /* UserTableViewCell.swift */,
 				CA46E78821456804005ACF27 /* ChatLogViewController.swift */,
+				CA46E7902145B066005ACF27 /* ChatMessageCollectionViewCell.swift */,
 			);
 			path = FirebaseChatApp;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				CA35D2592144636100F31F9F /* LoginRegisterView.xib */,
 				CA35D25E2144760C00F31F9F /* UserTableViewCell.xib */,
 				CA46E78A21456839005ACF27 /* ChatLogView.xib */,
+				CA46E78E2145B047005ACF27 /* ChatMessageCollectionViewCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 				CAD150E92144271300CFE33F /* Assets.xcassets in Resources */,
 				CA35D25F2144760C00F31F9F /* UserTableViewCell.xib in Resources */,
 				CA35D25A2144636100F31F9F /* LoginRegisterView.xib in Resources */,
+				CA46E78F2145B047005ACF27 /* ChatMessageCollectionViewCell.xib in Resources */,
 				CA46E78B21456839005ACF27 /* ChatLogView.xib in Resources */,
 				CA35D258214462B400F31F9F /* NewMessageView.xib in Resources */,
 				CAD150E72144271200CFE33F /* Main.storyboard in Resources */,
@@ -292,6 +299,7 @@
 				CAD150E42144271200CFE33F /* MessagesController.swift in Sources */,
 				CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */,
 				CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */,
+				CA46E7912145B066005ACF27 /* ChatMessageCollectionViewCell.swift in Sources */,
 				CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */,
 				CA46E78D21457966005ACF27 /* Message.swift in Sources */,
 				CAD150F72144298100CFE33F /* Constants.swift in Sources */,
