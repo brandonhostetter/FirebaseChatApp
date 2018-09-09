@@ -8,9 +8,15 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ChatLogViewController: UIViewController {
     var db: Firestore!
+    var user: User? {
+        didSet {
+            navigationItem.title = user?.name
+        }
+    }
 
     @IBOutlet weak var inputContainerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,13 +27,17 @@ class ChatLogViewController: UIViewController {
         super.viewDidLoad()
         
         db = Util.shared.db
-        
-        navigationItem.title = "Chat log controller"
     }
     
     private func sendMessage() {
-        guard let msgText = inputTextField.text else { return }
-        let msg = ["text": msgText]
+        guard let msgText = inputTextField.text,
+            let toId = user?.id,
+            let fromId = Auth.auth().currentUser?.uid
+            else { return }
+        
+        let timestamp = NSDate().timeIntervalSince1970
+        let msg: [String: Any] = ["text": msgText, "toId": toId, "fromId": fromId, "timestamp": timestamp]
+        
         self.db.collection(kMessagesKey).addDocument(data: msg) { err in
             if let err = err {
                 print("Error writing document: \(err)")

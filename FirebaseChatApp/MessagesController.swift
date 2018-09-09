@@ -12,7 +12,10 @@ import FirebaseAuth
 
 class MessagesController: UIViewController {
     var db: Firestore!
+    var messages = [Message]()
 
+    @IBOutlet weak var usersTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Util.shared.db
@@ -21,14 +24,12 @@ class MessagesController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new_message_icon"), style: .plain, target: self, action: #selector(createNewMessage))
         
         checkIfUserLoggedIn()
-        
-        // TEMP
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
-        view.isUserInteractionEnabled = true
+        observeMessages()
     }
     
-    @objc func showChatController() {
+    func showChatController(for user: User) {
         let chatLogViewController = ChatLogViewController(nibName: kChatLogView, bundle: nil)
+        chatLogViewController.user = user
         navigationController?.pushViewController(chatLogViewController, animated: true)
     }
     
@@ -61,9 +62,27 @@ class MessagesController: UIViewController {
         }
     }
     
+    private func observeMessages() {
+        db.collection(kMessagesKey).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            self.messages.removeAll()
+            for doc in document.documents {
+                let msg = Message(doc.data())
+                self.messages.append(msg)
+            }
+            
+            self.usersTableView.reloadData()
+        }
+    }
+    
     @objc private func createNewMessage() {
         let newMessageViewController = NewMessageViewController(nibName: kNewMessageView, bundle: nil)
         let navigationController = UINavigationController(rootViewController: newMessageViewController)
+        newMessageViewController.messagesController = self
         present(navigationController, animated: true, completion: nil)
     }
 
@@ -80,3 +99,18 @@ class MessagesController: UIViewController {
     }
 }
 
+extension MessagesController: UITableViewDelegate {
+    
+}
+
+extension MessagesController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "asdf")
+        cell.textLabel?.text = messages[indexPath.row].text
+        return cell
+    }
+}

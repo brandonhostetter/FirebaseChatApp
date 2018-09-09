@@ -16,6 +16,7 @@
 		CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35D260214476FF00F31F9F /* UserTableViewCell.swift */; };
 		CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E78821456804005ACF27 /* ChatLogViewController.swift */; };
 		CA46E78B21456839005ACF27 /* ChatLogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA46E78A21456839005ACF27 /* ChatLogView.xib */; };
+		CA46E78D21457966005ACF27 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46E78C21457966005ACF27 /* Message.swift */; };
 		CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E12144271200CFE33F /* AppDelegate.swift */; };
 		CAD150E42144271200CFE33F /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD150E32144271200CFE33F /* MessagesController.swift */; };
 		CAD150E72144271200CFE33F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD150E52144271200CFE33F /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		CA35D260214476FF00F31F9F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		CA46E78821456804005ACF27 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		CA46E78A21456839005ACF27 /* ChatLogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLogView.xib; sourceTree = "<group>"; };
+		CA46E78C21457966005ACF27 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		CAD150DE2144271200CFE33F /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD150E12144271200CFE33F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAD150E32144271200CFE33F /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				CA35D25C2144692100F31F9F /* User.swift */,
+				CA46E78C21457966005ACF27 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				CA35D261214476FF00F31F9F /* UserTableViewCell.swift in Sources */,
 				CAD150E22144271200CFE33F /* AppDelegate.swift in Sources */,
 				CA46E78921456804005ACF27 /* ChatLogViewController.swift in Sources */,
+				CA46E78D21457966005ACF27 /* Message.swift in Sources */,
 				CAD150F72144298100CFE33F /* Constants.swift in Sources */,
 				CA35D25D2144692100F31F9F /* User.swift in Sources */,
 			);

@@ -28,7 +28,6 @@ class NewMessageViewController: UIViewController {
     }
     
     private func fetchUser() {
-        db.collection(kUsersKey)
         db.collection(kUsersKey).addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
@@ -37,7 +36,7 @@ class NewMessageViewController: UIViewController {
             
             self.users.removeAll()
             for doc in document.documents {
-                let user = User(doc.data())
+                let user = User(doc.data(), id: doc.documentID)
                 self.users.append(user)
             }
             
@@ -53,7 +52,8 @@ class NewMessageViewController: UIViewController {
 extension NewMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismiss(animated: true) {
-            self.messagesController?.showChatController()
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatController(for: user)
         }
     }
 }
