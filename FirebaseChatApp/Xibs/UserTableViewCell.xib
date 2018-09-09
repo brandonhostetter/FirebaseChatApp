@@ -25,25 +25,34 @@
                             <constraint firstAttribute="height" constant="44" id="Z41-Kq-XDs"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98c-2p-EJQ">
-                        <rect key="frame" x="76" y="13" width="45" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98c-2p-EJQ">
+                        <rect key="frame" x="76" y="13" width="267" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0Y-pC-dp1">
-                        <rect key="frame" x="76" y="38" width="41" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="76" y="44.5" width="30.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsM-mZ-xzI">
+                        <rect key="frame" x="359" y="27" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="YsM-mZ-xzI" firstAttribute="centerY" secondItem="98c-2p-EJQ" secondAttribute="centerY" id="E3t-Ro-WuY"/>
+                    <constraint firstAttribute="trailing" secondItem="YsM-mZ-xzI" secondAttribute="trailing" constant="16" id="G7y-fK-QsZ"/>
                     <constraint firstItem="98c-2p-EJQ" firstAttribute="top" secondItem="uEC-V1-clH" secondAttribute="top" id="N8L-no-22V"/>
                     <constraint firstItem="uEC-V1-clH" firstAttribute="centerY" secondItem="l4e-g4-hPJ" secondAttribute="centerY" id="VEA-K4-u88"/>
                     <constraint firstItem="Z0Y-pC-dp1" firstAttribute="top" secondItem="98c-2p-EJQ" secondAttribute="bottom" constant="4" id="XFo-Ar-w7x"/>
                     <constraint firstItem="uEC-V1-clH" firstAttribute="leading" secondItem="l4e-g4-hPJ" secondAttribute="leading" constant="16" id="YTz-tV-wzY"/>
                     <constraint firstItem="98c-2p-EJQ" firstAttribute="leading" secondItem="uEC-V1-clH" secondAttribute="trailing" constant="16" id="iPt-D6-k4Q"/>
+                    <constraint firstItem="YsM-mZ-xzI" firstAttribute="leading" secondItem="98c-2p-EJQ" secondAttribute="trailing" constant="16" id="lLg-lk-U0m"/>
                     <constraint firstItem="Z0Y-pC-dp1" firstAttribute="leading" secondItem="uEC-V1-clH" secondAttribute="trailing" constant="16" id="yNj-Rq-GPU"/>
                 </constraints>
             </tableViewCellContentView>
@@ -51,6 +60,7 @@
                 <outlet property="emailLabel" destination="Z0Y-pC-dp1" id="AEx-4b-iEh"/>
                 <outlet property="nameLabel" destination="98c-2p-EJQ" id="sBe-vh-oqW"/>
                 <outlet property="profileImageView" destination="uEC-V1-clH" id="Ycw-CQ-uld"/>
+                <outlet property="timeLabel" destination="YsM-mZ-xzI" id="pNk-JA-wYq"/>
             </connections>
             <point key="canvasLocation" x="-17" y="1"/>
         </tableViewCell>

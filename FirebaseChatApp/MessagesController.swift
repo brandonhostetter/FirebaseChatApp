@@ -13,6 +13,7 @@ import FirebaseAuth
 class MessagesController: UIViewController {
     var db: Firestore!
     var messages = [Message]()
+    var messagesDict = [String: Message]()
 
     @IBOutlet weak var usersTableView: UITableView!
     
@@ -23,6 +24,8 @@ class MessagesController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new_message_icon"), style: .plain, target: self, action: #selector(createNewMessage))
         
+        usersTableView.register(UINib(nibName: kUserTableViewCell, bundle: nil), forCellReuseIdentifier: kUserTableViewCellReuseId)
+
         checkIfUserLoggedIn()
         observeMessages()
     }
@@ -72,8 +75,14 @@ class MessagesController: UIViewController {
             self.messages.removeAll()
             for doc in document.documents {
                 let msg = Message(doc.data())
-                self.messages.append(msg)
+                
+                if let toId = msg.toId {
+                    self.messagesDict[toId] = msg
+                }
             }
+            
+            self.messages = Array(self.messagesDict.values)
+            self.messages = self.messages.sorted(by: { $0.timestamp?.intValue ?? 0 > $1.timestamp?.intValue ?? 0 })
             
             self.usersTableView.reloadData()
         }
@@ -108,9 +117,19 @@ extension MessagesController: UITableViewDataSource {
         return messages.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "asdf")
-        cell.textLabel?.text = messages[indexPath.row].text
+        var cell: UserTableViewCell!
+        cell = tableView.dequeueReusableCell(withIdentifier: kUserTableViewCellReuseId, for: indexPath) as? UserTableViewCell
+        
+        if cell == nil {
+            cell = UserTableViewCell(style: .default, reuseIdentifier: kUserTableViewCellReuseId)
+        }
+
+        cell.configureAsFriend(self.messages[indexPath.row])
         return cell
     }
 }
